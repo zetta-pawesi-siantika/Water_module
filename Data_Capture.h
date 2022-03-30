@@ -8,4 +8,7 @@ float pHValue;
 double gTds;
 double gConductivity;
 
+/* Water level Sensor */
+float gWaterheight;
+
 #endif

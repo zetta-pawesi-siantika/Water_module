@@ -7,7 +7,7 @@
 #define ADC_RESOLUTION 1023.0
 
 // preprocessor write here
-#define DEBUG_ALL
+#define DEBUG_WATER_LEVEL
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,7 +20,8 @@ void loop() {
   // put your main code here, to run repeatedly:
   readSensorPH();
   readSensorSalinity();
+  readSensorwaterlevel();
 
-  //delay(DELAY_OPERATION);
+  delay(DELAY_OPERATION);
 
 }

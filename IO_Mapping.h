@@ -5,6 +5,7 @@
 /* Sensors */
 #define PIN_PH A1 // pH sensor
 #define PIN_SALINITY A3 // Salinity Sensor
+#define PIN_WATERLEVEL A0 // water level sensor
 
 
 #endif
