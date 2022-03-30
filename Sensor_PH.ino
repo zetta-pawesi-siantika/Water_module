@@ -55,7 +55,7 @@ double avergearray(int* arr, int number) {
   double avg;
   long amount = 0;
   if (number <= 0) {
-    uart.println("Error number for the array to avraging!/n");
+    uart.println("Error number for the array to averaging!/n");
     return 0;
   }
   if (number < 5) { //less than 5, calculated directly statistics
