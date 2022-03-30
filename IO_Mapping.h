@@ -3,8 +3,8 @@
 #ifndef IO_MAPPING_H
 #define IO_MAPPING_H
 /* Sensors */
-/* pH */
-#define PIN_PH A1
+#define PIN_PH A1 // pH sensor
+#define PIN_SALINITY A3 // Salinity Sensor
 
 
 #endif

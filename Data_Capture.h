@@ -4,4 +4,8 @@
 /* PH sensor */
 float pHValue;
 
+/* Salinity Sensor */
+double gTds;
+double gConductivity;
+
 #endif

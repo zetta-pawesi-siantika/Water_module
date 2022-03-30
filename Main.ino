@@ -3,9 +3,11 @@
 #include "Data_Capture.h"
 
 #define DELAY_OPERATION 800
-#define DEBUG_PH
 #define V_REF_5V 5.0
 #define ADC_RESOLUTION 1023.0
+
+// preprocessor write here
+#define DEBUG_ALL
 
 void setup() {
   // put your setup code here, to run once:
@@ -17,6 +19,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   readSensorPH();
+  readSensorSalinity();
+
   //delay(DELAY_OPERATION);
 
 }
