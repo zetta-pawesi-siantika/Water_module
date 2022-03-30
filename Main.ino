@@ -1,5 +1,6 @@
 
 #include "IO_Mapping.h"
+#include "Data_Capture.h"
 
 void setup() {
   // put your setup code here, to run once:

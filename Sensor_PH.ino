@@ -12,22 +12,20 @@
 #define samplingInterval 20
 #define printInterval 800
 #define ArrayLenth  40    //times of collection
-#define uart  Serial
+#define Serial  Serial
 int pHArray[ArrayLenth];   //Store the average value of the sensor feedback
 int pHArrayIndex = 0;
 
 
 void setupSensorPH(void)
 {
-  pinMode(LED, OUTPUT);
-  uart.begin(9600);
-  uart.println("pH meter experiment!");    //Test the uart monitor
+  Serial.println("pH meter experiment!");    //Test the Serial monitor
 }
 void readSensorPH(void)
 {
   static unsigned long samplingTime = millis();
   static unsigned long printTime = millis();
-  static float pHValue, voltage;
+  static float voltage;
   if (millis() - samplingTime > samplingInterval)
   {
     pHArray[pHArrayIndex++] = analogRead(PIN_PH);
@@ -36,15 +34,10 @@ void readSensorPH(void)
     pHValue = -19.185* voltage + Offset;
     samplingTime = millis();
   }
-  if (millis() - printTime > printInterval)  //Every 800 milliseconds, print a numerical, convert the state of the LED indicator
-  {
-    uart.print("Voltage:");
-    uart.print(voltage, 2);
-    uart.print("    pH value: ");
-    uart.println(pHValue, 2);
-    digitalWrite(LED, digitalRead(LED) ^ 1);
-    printTime = millis();
-  }
+  #if defined DEBUG_ALL || defined DEBUG_PH
+
+   #endif
+ 
 }
 
 
@@ -55,7 +48,7 @@ double avergearray(int* arr, int number) {
   double avg;
   long amount = 0;
   if (number <= 0) {
-    uart.println("Error number for the array to averaging!/n");
+    Serial.println("Error number for the array to averaging!/n");
     return 0;
   }
   if (number < 5) { //less than 5, calculated directly statistics
