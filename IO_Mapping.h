@@ -6,6 +6,8 @@
 #define PIN_PH A1 // pH sensor
 #define PIN_SALINITY A3 // Salinity Sensor
 #define PIN_WATERLEVEL A0 // water level sensor
+#define PIN_RELAY_1 3 // emptying
+#define PIN_RELAY_2 4
 
 
 #endif
