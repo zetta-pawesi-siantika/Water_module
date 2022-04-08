@@ -17,10 +17,6 @@ int pHArray[ArrayLenth];   //Store the average value of the sensor feedback
 int pHArrayIndex = 0;
 
 
-void setupSensorPH()
-{
-  Serial.println("pH meter experiment!");    //Test the Serial monitor
-}
 void readSensorPH()
 {
   static unsigned long samplingTime = millis();
