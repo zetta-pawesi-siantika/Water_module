@@ -8,7 +8,7 @@
 #define ADC_RESOLUTION 1024.0
 
 // preprocessor write here
-#define DEBUG_
+#define DEBUG_ALL
 
 void setup(){
   Serial.begin(9600);
@@ -17,8 +17,7 @@ void setup(){
 
 void loop(){
   readSensorPH();
-  Serial.print("PH Value: ");
-  Serial.println(gPhvalue);
+  readSensorSalinity();
 
   delay(800);
   
