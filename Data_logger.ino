@@ -12,7 +12,7 @@
 String FILE_TITLE ="WATER_1.txt";
 
 // Local Conts 
-String TEMPLATE_TITLE ="gPhvalue,gTds,gConductivity,gNtu,gTemp";
+String TEMPLATE_TITLE ="PH(0-14),Tds(ppm),Conductivity(Microsiemens),Turbidity(NTU),Water Temperature(Celcius)";
 File dataFile;
 
 void setupDatalogger()
@@ -54,7 +54,9 @@ void dataLogger()
 
   dataString = dataString + String(gPhvalue) + "," + String(gTds)+ "," + String(gConductivity)+ "," + String(gNtu)+ "," + String(gTemp);
   dataFile.println(dataString);
+  #if defined DEBUG_ALL || defined DEBUG_DATALOG
   Serial.println(dataString);
+  #endif
   dataFile.flush();
   
 }

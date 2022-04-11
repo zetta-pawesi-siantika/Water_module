@@ -11,19 +11,30 @@
 #define DELAY_PUREWATER_FILLING 9000
 
 // preprocessor write here
-#define DEBUG_ALL
+#define DEBUG_DATALOG
 
 void setup(){
   Serial.begin(9600);
   // setup to closed water
   setupMechanical() ;
+  setupRTCDS3231();
+  setupDatalogger();
 }
 
 void loop(){
-  moveServo(0);
-  delay(2000);
-  moveServo(180);
-  delay(2000);
+readSensorturbidity();
+readSensorPH();
+readSensorSalinity();
+readSensords18b20();
+dataLogger();
+printTimennow();
+delay(800);
+
+
+
+
+
+
   /* Emptying pure water  */
 //  moveServo(180); 
 //  delay(DELAY_EMPTYING);
@@ -46,9 +57,7 @@ void loop(){
 //  moveServo(0);
   
   /* Activating pure water pump*/
-  purewaterPump_ON();
-  delay(DELAY_PUREWATER_FILLING);
-  purewaterPump_OFF();
+
 
   Serial.println("DONE");
  // while(1){}
