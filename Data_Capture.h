@@ -10,6 +10,7 @@ float gPhvalue;
 double gTds;
 double gConductivity;
 
-
+/* Turbidity Sensor */
+float gNtu;
 
 #endif

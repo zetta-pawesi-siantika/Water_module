@@ -4,8 +4,9 @@
 #define IO_MAPPING_H
 
 /* Sensors */
-#define PIN_PH A1 // pH sensor
-#define PIN_SALINITY A2 // Salinity Sensor
+#define PIN_TURBIDITY A0
+#define PIN_PH A1 
+#define PIN_SALINITY A2 // Salinity and TDS Sensor
 
 
 /* Mechanic */
