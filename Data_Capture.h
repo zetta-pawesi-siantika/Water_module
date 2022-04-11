@@ -13,4 +13,7 @@ double gConductivity;
 /* Turbidity Sensor */
 float gNtu;
 
+/* ds18b20 Sensor */
+float gTemp;
+
 #endif

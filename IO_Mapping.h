@@ -4,9 +4,13 @@
 #define IO_MAPPING_H
 
 /* Sensors */
+// Analog pin
 #define PIN_TURBIDITY A0
 #define PIN_PH A1 
 #define PIN_SALINITY A2 // Salinity and TDS Sensor
+
+// Digital Pin
+#define PIN_DS18B20 4 
 
 
 /* Mechanic */
