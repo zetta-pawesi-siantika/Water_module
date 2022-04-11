@@ -44,12 +44,12 @@ void dataLogger()
   // make a string for assembling the data to log:
   String dataString = "";
 
-  // added day/month/year/Time
-//  dataFile.print(dayOftheWeek);
-//  dataFile.print(" ");
-//  dataFile.print(dateNow);
-//  dataFile.print(" ");
-//  dataFile.println(timeNow);
+  // added time stamp to field
+  dataFile.print(dayOftheWeek);
+  dataFile.print(" ");
+  dataFile.print(dateNow);
+  dataFile.print(" ");
+  dataFile.println(timeNow);
   
 
   dataString = dataString + String(gPhvalue) + "," + String(gTds)+ "," + String(gConductivity)+ "," + String(gNtu)+ "," + String(gTemp);

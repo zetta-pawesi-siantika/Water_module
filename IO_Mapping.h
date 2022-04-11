@@ -20,5 +20,11 @@
 #define PIN_PUREWATER 3
 #define PIN_SERVO 9
 
+/* DS3231 */
+
+ /* Time DS3231 */
+ String dayOftheWeek;
+ String dateNow; 
+ String timeNow;
 
 #endif
