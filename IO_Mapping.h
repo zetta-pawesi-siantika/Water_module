@@ -12,6 +12,8 @@
 // Digital Pin
 #define PIN_DS18B20 4 
 
+/* sd card / Data logger */
+#define CHIP_SELECT 10 // SS pin on Arduino Pro mini
 
 /* Mechanic */
 #define PIN_SEAPUMP 2
