@@ -25,7 +25,7 @@ void setupMechanical() {
   pinMode(PIN_SEAPUMP, OUTPUT);
   pinMode(PIN_PUREWATER, OUTPUT);
   myservo.attach(PIN_SERVO);
-  myservo.write(0);
+  myservo.write(20);
 }
 
 /* *********** Servo Operation *********** */
