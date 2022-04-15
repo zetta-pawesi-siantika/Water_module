@@ -9,6 +9,7 @@ float gPhvalue;
 /* Salinity Sensor */
 double gTds;
 double gConductivity;
+double gSalinity;
 
 /* Turbidity Sensor */
 float gNtu;

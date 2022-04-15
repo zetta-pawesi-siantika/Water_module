@@ -43,6 +43,7 @@ void loop() {
   delay(DELAY_SEAWATER_FULLFILL);
   seawaterPump_OFF();
 
+  #if defined SENSORS_READING || defined ALL_SYSTEM
   /* Activating Sensor  */
   printTimennow(); 
   readSensorturbidity();
@@ -51,6 +52,7 @@ void loop() {
   readSensords18b20();
   dataLogger();
   delay(2000);
+  #endif
   /* Deactivating Sensor */
   
   /* Emptying Seawater */

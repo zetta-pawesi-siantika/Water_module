@@ -12,7 +12,7 @@ void readSensorSalinity() {
   //delay(1000);
   gTds = (211.2254 * rata_rata_teg) - 144.1466;
   gConductivity = (0.3442 * rata_rata_teg) - 0.253;
-
+  gSalinity = pow(gConductivity,1.0878)  * 0.4665 ; // src:https://sciencing.com/convert-gallons-quarts-pints-cups-5259231.html
 #if defined DEBUG_ALL || defined DEBUG_SALINITY
 //  Serial.print("Voltage of Salinity Sensor: ");
 //  Serial.println(rata_rata_teg);
@@ -21,7 +21,10 @@ void readSensorSalinity() {
   Serial.println(" ppm");
   Serial.print("Conductvity: ");
   Serial.print(gConductivity);
-   Serial.println("Mikrosiemens");
+  Serial.println("Mikrosiemens");
+  Serial.print("Salinity: ");
+  Serial.print(gSalinity); 
+  Serial.println(" gram/liter"); // not sure
 
 #endif
 }
