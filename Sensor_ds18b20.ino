@@ -15,6 +15,6 @@ void readSensords18b20(){
 
   #if defined DEBUG_ALL || defined DS18B20 
   Serial.print("Suhu Celsius: ");
-  Serial.print(DS18B20.getTempCByIndex(0));
+  Serial.println(DS18B20.getTempCByIndex(0));
   #endif
 }

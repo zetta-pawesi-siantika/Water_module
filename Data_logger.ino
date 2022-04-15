@@ -37,6 +37,7 @@ void setupDatalogger()
   // template for title
   dataFile.println(TEMPLATE_TITLE);
   Serial.println(TEMPLATE_TITLE);
+   delay(2000);
 }
 
 void dataLogger()
@@ -58,5 +59,6 @@ void dataLogger()
   Serial.println(dataString);
   #endif
   dataFile.flush();
+ 
   
 }

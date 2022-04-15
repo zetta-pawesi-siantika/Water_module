@@ -6,30 +6,37 @@
 #define DELAY_OPERATION 800
 #define V_REF_5V 5.0
 #define ADC_RESOLUTION 1024.0
-#define DELAY_EMPTYING 3000
-#define DELAY_SEAWATER_FULLFILL 3000
-#define DELAY_PUREWATER_FILLING 3000
-#define EMPTYING_DEG 30 // degree
+#define DELAY_EMPTYING_SEAWATER 17000 // second
+#define DELAY_EMPTYING_PUREWATER 11000 // second
+#define DELAY_SEAWATER_FULLFILL 3000// second
+#define DELAY_PUREWATER_FILLING 9000// second
+#define EMPTYING_SEAWATER_DEG 160 // degree
+#define EMPTYING_PUREWATER_DEG 130 // degree
+#define SETTLE_SERVO_DEG 30 // degree 
 
 // preprocessor write here
-#define DEBUG_DATALOG
+#define DEBUG_ALL
+#define ALL_SYSTEM
 
 void setup() {
   Serial.begin(9600);
   // setup to closed water
+  delay(1000);
   setupMechanical() ;
   setupRTCDS3231();
-  setupDatalogger();
+  
   purewaterPump_OFF();
   seawaterPump_OFF();
+  
 }
 
 void loop() {
-
+  #ifdef ALL_SYSTEM
+  setupDatalogger();
   /* Emptying pure water  */
-  moveServo(180);
-  delay(DELAY_EMPTYING);
-  moveServo(EMPTYING_DEG);
+  moveServo(EMPTYING_PUREWATER_DEG);
+  delay(DELAY_EMPTYING_PUREWATER);
+  moveServo(SETTLE_SERVO_DEG);
 
   /* Sucking seawater */
   seawaterPump_ON();
@@ -37,17 +44,20 @@ void loop() {
   seawaterPump_OFF();
 
   /* Activating Sensor  */
+  printTimennow(); 
   readSensorturbidity();
-  readSensorPH();
+  //readSensorPH();
   readSensorSalinity();
   readSensords18b20();
   dataLogger();
+  delay(2000);
   /* Deactivating Sensor */
   
   /* Emptying Seawater */
-  moveServo(180);
-  delay(DELAY_EMPTYING);
-  moveServo(EMPTYING_DEG);
+  moveServo(EMPTYING_SEAWATER_DEG);
+ 
+  delay(DELAY_EMPTYING_SEAWATER);
+  moveServo(SETTLE_SERVO_DEG);
 
   /* Activating pure water pump */
 purewaterPump_ON();
@@ -56,6 +66,14 @@ purewaterPump_OFF();
   /* Deactivating Sensor  */
   
   Serial.println("DONE");
- delay(2000);
+#endif
+  #ifdef EMPTYING_SEAWATER
+  moveServo(EMPTYING_SEAWATER_DEG);
+  #endif
 
+  #ifdef TURN_ON_SEAPUMP
+  seawaterPump_ON();
+  #endif
+
+delay(1000);
 }

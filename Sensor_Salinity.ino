@@ -14,12 +14,14 @@ void readSensorSalinity() {
   gConductivity = (0.3442 * rata_rata_teg) - 0.253;
 
 #if defined DEBUG_ALL || defined DEBUG_SALINITY
-  Serial.print("Voltage of Salinity Sensor: ");
-  Serial.println(rata_rata_teg);
+//  Serial.print("Voltage of Salinity Sensor: ");
+//  Serial.println(rata_rata_teg);
   Serial.print("TDS: ");
-  Serial.println(gTds);
+  Serial.print(gTds);
+  Serial.println(" ppm");
   Serial.print("Conductvity: ");
-  Serial.println(gConductivity);
+  Serial.print(gConductivity);
+   Serial.println("Mikrosiemens");
 
 #endif
 }
