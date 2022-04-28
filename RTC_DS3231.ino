@@ -6,14 +6,10 @@ void setupRTCDS3231(){
 }
 
 void printTimennow(){
-  dayOftheWeek = rtc.getDOWStr();
   dateNow = rtc.getDateStr();
   timeNow = rtc.getTimeStr();
   
   #if defined DEBUG_RTCDS3231 || defined DEBUG_ALL
-    // Send Day-of-Week
-  Serial.print(dayOftheWeek);
-  Serial.print(" ");
   
   // Send date
   Serial.print(dateNow);

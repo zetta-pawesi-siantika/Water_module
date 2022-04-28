@@ -24,9 +24,4 @@
 #define PIN_SERVO 9
 
 
- /* Time DS3231 */
- String dayOftheWeek;
- String dateNow; 
- String timeNow;
-
 #endif

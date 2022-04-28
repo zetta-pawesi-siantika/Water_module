@@ -9,10 +9,10 @@
 
 
 // Global Conts 
-String FILE_TITLE ="WATER_1"; // MAXIMUM 7 Characters !
+String FILE_TITLE ="Wtr.txt"; // MAXIMUM 7 Characters !
 
 // Local Conts 
-String TEMPLATE_TITLE ="PH(0-14),Tds(ppm),Conductivity(Microsiemens),Turbidity(NTU),Water Temperature(Celcius)";
+String TEMPLATE_TITLE ="PH(0-14), Turbidity(NTU),Water Temperature(Celcius),Tds(ppm),Salinity(gram/liter)";
 File dataFile;
 
 void setupDatalogger()
@@ -36,27 +36,16 @@ void setupDatalogger()
   }
   // template for title
   dataFile.println(TEMPLATE_TITLE);
-  Serial.println(TEMPLATE_TITLE);
    delay(2000);
 }
 
 void dataLogger()
 {
-  // make a string for assembling the data to log:
-  String dataString = "";
-
-  // added time stamp to field
-  dataFile.print(dayOftheWeek);
-  dataFile.print(" ");
-  dataFile.print(dateNow);
-  dataFile.print(" ");
-  dataFile.println(timeNow);
-  
-
-  dataString = dataString + String(gPhvalue) + "," + String(gTds)+ "," + String(gConductivity)+ "," + String(gNtu)+ "," + String(gTemp);
-  dataFile.println(dataString);
+  // make a string for assembling the data to log: 
+  dataFile.println(dateNow + ","+ timeNow + "," + String(gPhvalue) + "," + String(gNtu)+ "," + String(gTemp)+ "," + String(gTds)+ "," + String(gSalinity));
+  delay(2000);
   #if defined DEBUG_ALL || defined DEBUG_DATALOG
-  Serial.println(dataString);
+  Serial.println("Data Logged");
   #endif
   dataFile.flush();
  

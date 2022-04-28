@@ -21,7 +21,7 @@ void readSensorSalinity() {
   Serial.println(" ppm");
   Serial.print("Conductvity: ");
   Serial.print(gConductivity);
-  Serial.println("Mikrosiemens");
+  Serial.println(" Mikrosiemens/cm");
   Serial.print("Salinity: ");
   Serial.print(gSalinity); 
   Serial.println(" gram/liter"); // not sure

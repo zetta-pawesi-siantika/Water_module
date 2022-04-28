@@ -9,15 +9,15 @@
 #define DELAY_EMPTYING_SEAWATER 17000 // second
 #define DELAY_EMPTYING_PUREWATER 11000 // second
 #define DELAY_SEAWATER_FULLFILL 4000// second
-#define DELAY_PUREWATER_FILLING 6000// second
+#define DELAY_PUREWATER_FILLING 5500// second
 #define EMPTYING_SEAWATER_DEG 80 // degree
 #define EMPTYING_PUREWATER_DEG 120 // degree
 #define SETTLE_SERVO_DEG 0 // degree 
 
 // preprocessor write here
 
-#define SEND_TO_SERVER
-//#define DEBUG_DS18B20
+#define DEBUG_DATALOG // for serial
+#define ALL_SYSTEM // for operation
 
 //#define TURN_ON_SEAPUMP
 
@@ -27,10 +27,11 @@ void setup() {
 
   // setup to closed water
   delay(1000);
-
+   setupDatalogger();
+  delay(1000);
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
- // setupMechanical() ;
+  setupMechanical() ;
   setupRTCDS3231();
   purewaterPump_OFF();
   seawaterPump_OFF();
@@ -45,8 +46,7 @@ void loop() {
 
 #if defined MECHANICAL || defined ALL_SYSTEM
 
-  setupDatalogger();
-  delay(1000);
+ 
   /* Emptying pure water  */
   moveServo(EMPTYING_PUREWATER_DEG);
   delay(DELAY_EMPTYING_PUREWATER);
@@ -63,7 +63,7 @@ void loop() {
 #if defined SENSORS_READING || defined ALL_SYSTEM
   /* Activating Sensor  */
   activateSensor();
-  delay(1000);
+  delay(2000);
   printTimennow();
   readSensorturbidity();
   readSensorPH();
@@ -77,19 +77,18 @@ void loop() {
 #if defined DEACTIVATED_SENSORS || defined ALL_SYSTEM
   /* Deactivating Sensor  */
   deactivateSensor();
-  delay(2000);
 #endif
-
-#ifdef SEND_TO_SERVER // sensitive issue, Issolate
-  disableServo(); // dissable servo
-  sendDatatoserver();
-#endif
-
 
 #if defined DATA_LOGGER || defined ALL_SYSTEM
   dataLogger();
-  delay(2000);
 #endif
+
+//#if defined SEND_TO_SERVER  || defined ALL_SYSTEM // sensitive issue, Issolate
+//  sendDatatoserver();
+//#endif
+
+
+
 
   /* Deactivating Sensor */
   /* Emptying Seawater */
@@ -134,8 +133,4 @@ void activateSensor() {
 void deactivateSensor() {
   digitalWrite(VCC_SENSORS, LOW);
   digitalWrite(VCC_TURBIDITY, LOW);
-}
-
-void disableServo() {
-  pinMode(PIN_SERVO, INPUT);
 }

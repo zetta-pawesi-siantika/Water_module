@@ -17,4 +17,7 @@ float gNtu;
 /* ds18b20 Sensor */
 float gTemp;
 
+/* RTC DS3231 */
+ String dateNow; 
+ String timeNow;
 #endif
