@@ -9,7 +9,7 @@
 
 
 // Global Conts 
-String FILE_TITLE ="WATER_1.txt";
+String FILE_TITLE ="WATER_1"; // MAXIMUM 7 Characters !
 
 // Local Conts 
 String TEMPLATE_TITLE ="PH(0-14),Tds(ppm),Conductivity(Microsiemens),Turbidity(NTU),Water Temperature(Celcius)";
@@ -31,7 +31,7 @@ void setupDatalogger()
 
   dataFile = SD.open(FILE_TITLE, FILE_WRITE);
   if (! dataFile) {
-    Serial.println("error opening datalog.txt");
+    Serial.println("error opening "+ FILE_TITLE);
   
   }
   // template for title

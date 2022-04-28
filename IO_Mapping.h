@@ -10,14 +10,17 @@
 #define PIN_SALINITY A2 // Salinity and TDS Sensor
 
 // Digital Pin
-#define PIN_DS18B20 4 
+#define PIN_DS18B20 4
+#define VCC_TURBIDITY 7 
+#define VCC_SENSORS 8
+
 
 /* sd card / Data logger */
-#define CHIP_SELECT 10 // SS pin on Arduino Pro mini
+#define CHIP_SELECT 10 // SS pin on Arduino Nano
 
 /* Mechanic */
-#define PIN_SEAPUMP 2
-#define PIN_PUREWATER 3
+#define PIN_SEAPUMP 5
+#define PIN_PUREWATER 6
 #define PIN_SERVO 9
 
 
