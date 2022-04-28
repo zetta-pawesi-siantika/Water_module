@@ -16,13 +16,13 @@
 
 // preprocessor write here
 
-#define SENSORS_READING
-#define DEBUG_DS18B20
+#define SEND_TO_SERVER
+//#define DEBUG_DS18B20
 
 //#define TURN_ON_SEAPUMP
 
 void setup() {
-#if defined SENSORS_READING || defined ALL_SYSTEM
+
   Serial.begin(9600);
 
   // setup to closed water
@@ -30,7 +30,7 @@ void setup() {
 
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
-  setupMechanical() ;
+ // setupMechanical() ;
   setupRTCDS3231();
   purewaterPump_OFF();
   seawaterPump_OFF();
@@ -38,7 +38,7 @@ void setup() {
   // setup comunication
   setupCom();
 
-#endif
+
 }
 
 void loop() {
@@ -74,9 +74,6 @@ void loop() {
 
 
 
-
-
-
 #if defined DEACTIVATED_SENSORS || defined ALL_SYSTEM
   /* Deactivating Sensor  */
   deactivateSensor();
@@ -84,6 +81,7 @@ void loop() {
 #endif
 
 #ifdef SEND_TO_SERVER // sensitive issue, Issolate
+  disableServo(); // dissable servo
   sendDatatoserver();
 #endif
 
@@ -136,4 +134,8 @@ void activateSensor() {
 void deactivateSensor() {
   digitalWrite(VCC_SENSORS, LOW);
   digitalWrite(VCC_TURBIDITY, LOW);
+}
+
+void disableServo() {
+  pinMode(PIN_SERVO, INPUT);
 }

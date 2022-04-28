@@ -71,9 +71,12 @@ void sendDatatoserver()
   ShowSerialData();
 
   // Sensors channel
-  String str = "GET https://api.thingspeak.com/update?api_key=" + String(API_KEY) + "&field1=" + String(gPhvalue) + "&field2=" + String(gNtu) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity);
-  Serial.println(str);
-  SIM808.println(str);//begin send data to remote server
+ // str += "GET https://api.thingspeak.com/update?api_key=" + String(API_KEY) + "&field1=" + String(50) + "&field2=" + String(60) + "&field3=" + String(70) + "&field4=" + String(80) + "&field5=" + String(20);
+  Serial.print("GET https://api.thingspeak.com/update?api_key=" + String(API_KEY));
+  SIM808.print("GET https://api.thingspeak.com/update?api_key=" + String(API_KEY));//begin send data to remote server
+  delay(2000);
+    Serial.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gNtu) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));
+  SIM808.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gNtu) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));//begin send data to remote server
 
   delay(4000);
   ShowSerialData();
