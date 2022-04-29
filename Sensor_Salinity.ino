@@ -12,7 +12,15 @@ void readSensorSalinity() {
   //delay(1000);
   gTds = (211.2254 * rata_rata_teg) - 144.1466;
   gConductivity = (0.3442 * rata_rata_teg) - 0.253;
+
+    // bug if gSalinity is Nan 
+  if (gConductivity <= 0){
+    gConductivity=0;
+  }
+  
   gSalinity = pow(gConductivity,1.0878)  * 0.4665 ; // src:https://sciencing.com/convert-gallons-quarts-pints-cups-5259231.html
+
+
 #if defined DEBUG_ALL || defined DEBUG_SALINITY
 //  Serial.print("Voltage of Salinity Sensor: ");
 //  Serial.println(rata_rata_teg);

@@ -4,18 +4,18 @@
 
 
 /* PH sensor */
-float gPhvalue;
+byte gPhvalue;
 
 /* Salinity Sensor */
-double gTds;
-double gConductivity;
-double gSalinity;
+float gTds;
+float gConductivity;
+float gSalinity;
 
 /* Turbidity Sensor */
 float gNtu;
 
 /* ds18b20 Sensor */
-float gTemp;
+byte gTemp;
 
 /* RTC DS3231 */
  String dateNow; 

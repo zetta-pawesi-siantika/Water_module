@@ -7,15 +7,16 @@
   # SKU    : SEN0161
 */
 
-#define OFFSET 42.56            //deviation compensate
-#define PH_CONST -19.185        // check datasheet at seeding studio
+#define OFFSET 1.4           //deviation compensate
+
 int _analogReadPH;
 float _voltageConvertionPH;
 
 void readSensorPH(){
     _analogReadPH = analogRead(PIN_PH);
     _voltageConvertionPH = _analogReadPH * V_REF_5V/ ADC_RESOLUTION;
-    gPhvalue = -19.185 * _voltageConvertionPH + OFFSET;
+    Serial.println(_voltageConvertionPH);
+    gPhvalue = 3.5 * _voltageConvertionPH + OFFSET;
 
     #if defined DEBUG_ALL || defined DEBUG_PH
       Serial.print("PH Value: ");

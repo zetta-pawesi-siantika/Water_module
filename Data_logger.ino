@@ -7,12 +7,6 @@
 #include <SD.h>
 
 
-
-// Global Conts 
-String FILE_TITLE ="Wtr.txt"; // MAXIMUM 7 Characters !
-
-// Local Conts 
-String TEMPLATE_TITLE ="PH(0-14), Turbidity(NTU),Water Temperature(Celcius),Tds(ppm),Salinity(gram/liter)";
 File dataFile;
 
 void setupDatalogger()
@@ -29,13 +23,13 @@ void setupDatalogger()
   Serial.println("card initialized.");
   
 
-  dataFile = SD.open(FILE_TITLE, FILE_WRITE);
-  if (! dataFile) {
-    Serial.println("error opening "+ FILE_TITLE);
+  dataFile = SD.open("w.txt", FILE_WRITE);
+  if (!dataFile) {
+    Serial.println("error opening SD_Card");
   
   }
   // template for title
-  dataFile.println(TEMPLATE_TITLE);
+  dataFile.println("PH(0-14), Turbidity(NTU),Water Temperature(Celcius),Tds(ppm),Salinity(gram/liter)");
    delay(2000);
 }
 
