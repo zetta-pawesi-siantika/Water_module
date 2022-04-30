@@ -84,8 +84,12 @@ void loop() {
 #endif
 
 
+
+
+
+
 /* Testing mechanical operation
- *  it is not part from main code, only use when to doing specific operation on mechanical
+ *  it is not part from main code, only use when to doing specific operation on mechanical / debugging
  */
 
 #ifdef SETTLE_SERVO
@@ -102,5 +106,5 @@ void loop() {
 #ifdef TURN_ON_PUREWATER_PUMP
   purewaterPump_ON();
 #endif
- 
+
 }

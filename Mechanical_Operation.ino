@@ -11,7 +11,6 @@ void setupMechanical() {
   myservo.write(SETTLE_SERVO_DEG);
 }
 
-
 void moveServo(byte deg){
   myservo.write(deg);
 }
@@ -32,13 +31,12 @@ void purewaterPump_OFF(){
   digitalWrite(PIN_PUREWATER, HIGH);
 }
 
-/* Activating sensors */
+
 void activateSensor() {
   digitalWrite(VCC_SENSORS, HIGH);
   digitalWrite(VCC_TURBIDITY, HIGH);
 }
 
-/* Deactivating sensors */
 void deactivateSensor() {
   digitalWrite(VCC_SENSORS, LOW);
   digitalWrite(VCC_TURBIDITY, LOW);

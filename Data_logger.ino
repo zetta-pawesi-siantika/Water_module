@@ -1,5 +1,5 @@
 /*Data logger properties
-   this function is to log sensors data and stores it in micro SD Card
+   this function is to log sensors's data and store it in micro SD Card
 */
 
 // WARNING: UNDER PROCCESS --> still doesn't work
