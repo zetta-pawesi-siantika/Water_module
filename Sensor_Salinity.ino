@@ -22,14 +22,14 @@ void readSensorSalinity() {
   gSalinity = pow(gConductivity,1.0878)  * 0.4665 ; // src:https://sciencing.com/convert-gallons-quarts-pints-cups-5259231.html
 
 #if defined DEBUG_ALL || defined DEBUG_SALINITY
-  Serial.print("TDS: ");
+  Serial.print(F("TDS: "));
   Serial.print(gTds);
-  Serial.println(" ppm");
-  Serial.print("Conductvity: ");
+  Serial.println(F(" ppm"));
+  Serial.print(F("Conductvity: "));
   Serial.print(gConductivity);
-  Serial.println(" Mikrosiemens/cm");
-  Serial.print("Salinity: ");
+  Serial.println(F(" Mikrosiemens/cm"));
+  Serial.print(F("Salinity: "));
   Serial.print(gSalinity); 
-  Serial.println(" gram/liter"); 
+  Serial.println(F(" gram/liter")); 
 #endif
 }

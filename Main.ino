@@ -15,14 +15,12 @@
 // preprocessor write here --> it enabels or disables features
 #define MECHANICAL
 #define SENSORS_READING 
-#define DEBUG_PH
 #define DEACTIVATED_SENSORS
 #define SEND_TO_SERVER
-#define DEBUG_SIM808L
 
 void setup() {
   Serial.begin(9600);
-  delay(2000); // delay to prevent pin auto low when booting up
+  delay(2000); // delay for preventing pin form auto in low level when Arduino booting up
   
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
@@ -52,10 +50,10 @@ void loop() {
 #if defined SENSORS_READING || defined ALL_SYSTEM
   /* Activating Sensor  */
   activateSensor();
-  delay(3000); // give sensor to initialize
+  delay(3000); // give sensors time to initialize setup
   printTimennow();
   readSensorturbidity();
-  //readSensorPH();
+  readSensorPH();
   readSensorSalinity();
   readSensords18b20();
 #endif

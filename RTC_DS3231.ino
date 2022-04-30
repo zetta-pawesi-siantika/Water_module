@@ -12,7 +12,7 @@ void printTimennow(){
   #if defined DEBUG_RTCDS3231 || defined DEBUG_ALL
   // Showing date
   Serial.print(dateNow);
-  Serial.print(" -- ");
+  Serial.print(F(" -- "));
 
   // Showing time
   Serial.println(timeNow);

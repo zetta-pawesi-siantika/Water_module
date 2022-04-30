@@ -20,7 +20,7 @@ void readSensorPH() {
   gPhvalue = 3.5 * _voltageConvertionPH + OFFSET;
 
 #if defined DEBUG_ALL || defined DEBUG_PH
-  Serial.print("PH Value: ");
+  Serial.print(F("PH Value: "));
   Serial.println(gPhvalue);
 #endif
 }

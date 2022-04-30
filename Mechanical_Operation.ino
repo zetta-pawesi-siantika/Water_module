@@ -32,4 +32,3 @@ void purewaterPump_ON(){
 void purewaterPump_OFF(){
   digitalWrite(PIN_PUREWATER, HIGH);
 }
-/* *********** pump operation end here *********** */
