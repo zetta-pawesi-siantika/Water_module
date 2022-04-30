@@ -9,17 +9,19 @@
 
 // preprocessor write here --> it enabels or disables features
 #define MECHANICAL
-#define SENSORS_READING 
+#define SENSORS_READING
 #define DEACTIVATED_SENSORS
+#define DATA_LOGGER
 #define SEND_TO_SERVER
 
 void setup() {
   Serial.begin(9600);
   delay(2000); // delay for preventing pin form auto in low level when Arduino booting up
-  
+
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
   setupMechanical() ;
+  setupDatalogger();
   setupRTCDS3231();
   purewaterPump_OFF();
   seawaterPump_OFF();
@@ -57,6 +59,10 @@ void loop() {
   deactivateSensor();
 #endif
 
+#if defined DATA_LOGGER || defined ALL_SYSTEM
+  dataLogger();
+#endif
+
 
   /* Emptying Seawater */
 #if defined MECHANICAL || defined ALL_SYSTEM
@@ -82,9 +88,9 @@ void loop() {
 
 
 
-/* Testing mechanical operation
- *  it is not part from main code, only use when to doing specific operation on mechanical / debugging
- */
+  /* Testing mechanical operation
+      it is not part from main code, only use when to doing specific operation on mechanical / debugging
+  */
 
 #ifdef SETTLE_SERVO
   moveServo(SETTLE_SERVO_DEG);
