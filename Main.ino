@@ -1,9 +1,7 @@
 #include <Wire.h>
-
 #include "IO_Mapping.h"
 #include "Data_Capture.h"
 
-#define DELAY_OPERATION 800
 #define V_REF_5V 5.0
 #define ADC_RESOLUTION 1024.0
 #define DELAY_EMPTYING_SEAWATER 17000 // second
@@ -14,47 +12,30 @@
 #define EMPTYING_PUREWATER_DEG 120 // degree
 #define SETTLE_SERVO_DEG 0 // degree 
 
-// preprocessor write here
-
-//#define DATA_LOGGER // for serial
-//#define DEBUG_DATALOG // for operation
+// preprocessor write here --> it enabels or disables features
 #define MECHANICAL
 #define SENSORS_READING 
 #define DEBUG_PH
-//#define TURN_ON_SEAPUMP
 #define DEACTIVATED_SENSORS
 #define SEND_TO_SERVER
 #define DEBUG_SIM808L
 
-
-//#define TURN_ON_SEAPUMP
-
 void setup() {
-
   Serial.begin(9600);
-
-  // setup to closed water
-  delay(1000);
- // setupDatalogger();
-  delay(2000);
+  delay(2000); // delay to prevent pin auto low when booting up
+  
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
   setupMechanical() ;
   setupRTCDS3231();
   purewaterPump_OFF();
   seawaterPump_OFF();
-
-  // setup comunication
   setupCom();
-
-
 }
 
 void loop() {
 
 #if defined MECHANICAL || defined ALL_SYSTEM
-
-
   /* Emptying pure water  */
   moveServo(EMPTYING_PUREWATER_DEG);
   delay(DELAY_EMPTYING_PUREWATER);
@@ -71,31 +52,21 @@ void loop() {
 #if defined SENSORS_READING || defined ALL_SYSTEM
   /* Activating Sensor  */
   activateSensor();
-  delay(2000);
+  delay(3000); // give sensor to initialize
   printTimennow();
   readSensorturbidity();
-  readSensorPH();
+  //readSensorPH();
   readSensorSalinity();
   readSensords18b20();
 #endif
 
 
-
-
 #if defined DEACTIVATED_SENSORS || defined ALL_SYSTEM
-  /* Deactivating Sensor  */
   deactivateSensor();
 #endif
 
-#if defined DATA_LOGGER || defined ALL_SYSTEM
-  dataLogger();
-#endif
 
-
-
-  /* Deactivating Sensor */
   /* Emptying Seawater */
-
 #if defined MECHANICAL || defined ALL_SYSTEM
   moveServo(EMPTYING_SEAWATER_DEG);
   delay(DELAY_EMPTYING_SEAWATER);
@@ -115,7 +86,10 @@ void loop() {
 #endif
 
 
-  // mechanical operation
+/* Testing mechanical operation
+ *  it is not part from main code, only use when to doing specific operation on mechanical
+ */
+
 #ifdef SETTLE_SERVO
   moveServo(SETTLE_SERVO_DEG);
 #endif
@@ -130,7 +104,7 @@ void loop() {
 #ifdef TURN_ON_PUREWATER_PUMP
   purewaterPump_ON();
 #endif
-  delay(1000);
+ 
 }
 
 
@@ -144,14 +118,4 @@ void activateSensor() {
 void deactivateSensor() {
   digitalWrite(VCC_SENSORS, LOW);
   digitalWrite(VCC_TURBIDITY, LOW);
-}
-
-/*Disable servo */
-void disableServo() {
-  digitalWrite(PIN_SERVO, LOW);
-}
-
-/*Disable servo */
-void enableServo() {
-  pinMode(PIN_SERVO, OUTPUT);
 }

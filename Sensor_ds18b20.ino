@@ -1,4 +1,4 @@
-
+/* Sensor DSb18b20 properties, It measures water temperature */
 
 #include <OneWire.h>
 #include <DallasTemperature.h>

@@ -1,4 +1,4 @@
-
+/* Sensor Turbidity properties, It measures turbidity in NTU unit */
 
 float _turbidityVolt;
 #define CALIBRATION_BOUNDARY 4.20
@@ -19,17 +19,14 @@ void readSensorturbidity()
   }
 
   if (_turbidityVolt < 2.5) {
-    gNtu = 3000;
+    gTurbidity = 3000;
   } else {
-    gNtu = -1120.4 * square(_turbidityVolt) + 5742.3 * _turbidityVolt - 4352.9;
+    gTurbidity = -1120.4 * square(_turbidityVolt) + 5742.3 * _turbidityVolt - 4352.9;
   }
 
 #if defined DEBUG_ALL || defined DEBUG_TURBIDITY
-//  Serial.print("Volt value: ");
-//  Serial.println(_turbidityVolt);
-
   Serial.print("Turbidity in NTU value: ");
-  Serial.print(gNtu);
+  Serial.print(gTurbidity);
   Serial.println("NTU");
 #endif
 }

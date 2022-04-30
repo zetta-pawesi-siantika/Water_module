@@ -1,13 +1,11 @@
 #include <SoftwareSerial.h>
 #include <String.h>
 
-
 SoftwareSerial SIM808(2, 3); // RX || TX
 
 void setupCom()
 {
   SIM808.begin(9600);               // the GPRS baud rate
-
 }
 
 void sendDatatoserver()
@@ -69,22 +67,18 @@ void sendDatatoserver()
   SIM808.println("AT+CIPSEND");//begin send data to remote server
   delay(4000);
   ShowSerialData();
-  //
-  //  // Sensors channel
-  //  // str += "GET https://api.thingspeak.com/update?api_key=" + String(API_KEY) + "&field1=" + String(50) + "&field2=" + String(60) + "&field3=" + String(70) + "&field4=" + String(80) + "&field5=" + String(20);
-  //Serial.print("GET https://api.thingspeak.com/update?api_key=JIJJ0YWO8O6QK5BQ");
-  SIM808.print("GET https://api.thingspeak.com/update?api_key=JIJJ0YWO8O6QK5BQ");//begin send data to remote server
+  SIM808.print("GET https://api.thingspeak.com/update?api_key=JIJJ0YWO8O6QK5BQ");//begin send data to remote server. || key is auth= SHOULD CHANGE IT ACCORDING TO YOUR CHANNEL
   delay(2000);
-  Serial.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gNtu) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));
-  SIM808.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gNtu) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));//begin send data to remote server
+  Serial.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gTurbidity) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));
+  SIM808.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gTurbidity) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));//begin send data to remote server
 
   delay(2000);
   ShowSerialData();
-  //
+
   SIM808.println((char)26);//sending
   delay(5000);//waitting for reply, important! the time is base on the condition of internet
   SIM808.println();
-  //
+ 
   SIM808.println("AT+CIPSHUT");//close the connection
   delay(100);
   ShowSerialData();

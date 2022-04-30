@@ -7,19 +7,20 @@
   # SKU    : SEN0161
 */
 
-#define OFFSET 1.4           //deviation compensate
+#define OFFSET 1.4  //deviation compensate --> done by self callibration
 
-int _analogReadPH;
-float _voltageConvertionPH;
+  int _analogReadPH;
+  float _voltageConvertionPH;
 
-void readSensorPH(){
-    _analogReadPH = analogRead(PIN_PH);
-    _voltageConvertionPH = _analogReadPH * V_REF_5V/ ADC_RESOLUTION;
-    Serial.println(_voltageConvertionPH);
-    gPhvalue = 3.5 * _voltageConvertionPH + OFFSET;
+void readSensorPH() {
 
-    #if defined DEBUG_ALL || defined DEBUG_PH
-      Serial.print("PH Value: ");
-      Serial.println(gPhvalue);
-     #endif
+  _analogReadPH = analogRead(PIN_PH);
+  _voltageConvertionPH = _analogReadPH * V_REF_5V / ADC_RESOLUTION;
+  Serial.println(_voltageConvertionPH);
+  gPhvalue = 3.5 * _voltageConvertionPH + OFFSET;
+
+#if defined DEBUG_ALL || defined DEBUG_PH
+  Serial.print("PH Value: ");
+  Serial.println(gPhvalue);
+#endif
 }

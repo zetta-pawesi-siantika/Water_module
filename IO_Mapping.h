@@ -14,7 +14,6 @@
 #define VCC_TURBIDITY 7 
 #define VCC_SENSORS 8
 
-
 /* sd card / Data logger */
 #define CHIP_SELECT 10 // SS pin on Arduino Nano
 
@@ -22,6 +21,5 @@
 #define PIN_SEAPUMP 5
 #define PIN_PUREWATER 6
 #define PIN_SERVO 9
-
 
 #endif

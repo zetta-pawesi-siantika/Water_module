@@ -10,12 +10,11 @@ void printTimennow(){
   timeNow = rtc.getTimeStr();
   
   #if defined DEBUG_RTCDS3231 || defined DEBUG_ALL
-  
-  // Send date
+  // Showing date
   Serial.print(dateNow);
   Serial.print(" -- ");
 
-  // Send time
+  // Showing time
   Serial.println(timeNow);
   #endif
 }

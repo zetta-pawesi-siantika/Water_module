@@ -12,7 +12,7 @@ float gConductivity;
 float gSalinity;
 
 /* Turbidity Sensor */
-float gNtu;
+float gTurbidity;
 
 /* ds18b20 Sensor */
 byte gTemp;

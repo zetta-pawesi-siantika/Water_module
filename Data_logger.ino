@@ -2,6 +2,11 @@
  * this function is to log sensors data and stores it in micro SD Card
 */
 
+
+
+// WARNING: UNDER PROCCESS --> still doesn't work
+
+
 //Libraries
 #include <SPI.h>
 #include <SD.h>
@@ -36,7 +41,7 @@ void setupDatalogger()
 void dataLogger()
 {
   // make a string for assembling the data to log: 
-  dataFile.println(dateNow + ","+ timeNow + "," + String(gPhvalue) + "," + String(gNtu)+ "," + String(gTemp)+ "," + String(gTds)+ "," + String(gSalinity));
+  dataFile.println(dateNow + ","+ timeNow + "," + String(gPhvalue) + "," + String(gTurbidity)+ "," + String(gTemp)+ "," + String(gTds)+ "," + String(gSalinity));
   delay(2000);
   #if defined DEBUG_ALL || defined DEBUG_DATALOG
   Serial.println("Data Logged");
