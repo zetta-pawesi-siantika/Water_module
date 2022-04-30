@@ -5,7 +5,7 @@
 /* PH sensor */
 byte gPhvalue;
 
-/* Salinity Sensor */
+/* TDS Sensor */
 float gTds;
 float gConductivity;
 float gSalinity;

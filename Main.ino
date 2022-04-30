@@ -48,7 +48,6 @@ void loop() {
 
 
 #if defined SENSORS_READING || defined ALL_SYSTEM
-  /* Activating Sensor  */
   activateSensor();
   delay(3000); // give sensors time to initialize setup
   printTimennow();

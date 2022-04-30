@@ -37,6 +37,7 @@ void activateSensor() {
   digitalWrite(VCC_TURBIDITY, HIGH);
 }
 
+
 void deactivateSensor() {
   digitalWrite(VCC_SENSORS, LOW);
   digitalWrite(VCC_TURBIDITY, LOW);
