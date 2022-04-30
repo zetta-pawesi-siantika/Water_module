@@ -1,10 +1,11 @@
 /* Sensor Turbidity properties, It measures turbidity in NTU unit */
-
-float _turbidityVolt;
-#define CALIBRATION_BOUNDARY 4.20
+// src: https://how2electronics.com/diy-turbidity-meter-using-turbidity-sensor-arduino/
 
 void readSensorturbidity()
 {
+  #define CALIBRATION_BOUNDARY 4.20
+  float _turbidityVolt;
+
   _turbidityVolt = 0;
   for (int i = 0; i < 800; i++)
   {

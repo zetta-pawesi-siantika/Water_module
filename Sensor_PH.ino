@@ -7,12 +7,12 @@
   # SKU    : SEN0161
 */
 
-#define OFFSET 1.4  //deviation compensate --> done by self callibration
 
-  int _analogReadPH;
-  float _voltageConvertionPH;
 
 void readSensorPH() {
+  #define OFFSET 1.4  //deviation compensate --> done by self callibration
+  unsigned int _analogReadPH;
+  float _voltageConvertionPH;
 
   _analogReadPH = analogRead(PIN_PH);
   _voltageConvertionPH = _analogReadPH * V_REF_5V / ADC_RESOLUTION;

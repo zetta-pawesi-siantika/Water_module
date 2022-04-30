@@ -2,20 +2,15 @@
    this function is to log sensors data and stores it in micro SD Card
 */
 
-
-
 // WARNING: UNDER PROCCESS --> still doesn't work
-
 
 //Libraries
 #include <SPI.h>
 #include <SD.h>
 
-
 File dataFile;
 
-void setupDatalogger()
-{
+void setupDatalogger() {
   pinMode(SS, OUTPUT);
 
   if (!SD.begin(CHIP_SELECT)) {
@@ -23,7 +18,7 @@ void setupDatalogger()
   }
   Serial.println(F("card initialized."));
 
-  dataFile = SD.open("w.txt", FILE_WRITE);
+  dataFile = SD.open("wtr.txt", FILE_WRITE);
   if (!dataFile) {
     Serial.println(F("error opening SD_Card"));
 
@@ -33,8 +28,7 @@ void setupDatalogger()
   delay(2000);
 }
 
-void dataLogger()
-{
+void dataLogger() {
   dataFile.println(dateNow + "," + timeNow + "," + String(gPhvalue) + "," + String(gTurbidity) + "," + String(gTemp) + "," + String(gTds) + "," + String(gSalinity));
   delay(1000);
 #if defined DEBUG_ALL || defined DEBUG_DATALOG

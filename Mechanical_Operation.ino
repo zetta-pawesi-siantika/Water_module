@@ -3,7 +3,6 @@
 
 #include <Servo.h>
 Servo myservo;
-byte _Angle = 0; // degree
 
 void setupMechanical() {
   pinMode(PIN_SEAPUMP, OUTPUT);
