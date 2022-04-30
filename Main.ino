@@ -104,16 +104,3 @@ void loop() {
 #endif
  
 }
-
-
-/* Activating sensors */
-void activateSensor() {
-  digitalWrite(VCC_SENSORS, HIGH);
-  digitalWrite(VCC_TURBIDITY, HIGH);
-}
-
-/* Deactivating sensors */
-void deactivateSensor() {
-  digitalWrite(VCC_SENSORS, LOW);
-  digitalWrite(VCC_TURBIDITY, LOW);
-}

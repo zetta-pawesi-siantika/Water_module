@@ -2,6 +2,8 @@
 #ifndef DATA_CAPTURE_H
 #define DATA_CAPTURE_H
 
+/*analog read variable */
+float readAnalogdata;
 
 /* PH sensor */
 byte gPhvalue;
