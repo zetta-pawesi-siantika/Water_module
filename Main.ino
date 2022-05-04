@@ -1,25 +1,38 @@
 #include <Wire.h>
+#include <DS3231.h>
 #include "IO_Mapping.h"
 #include "Data_Capture.h"
 #include "Mechanical_Setting.h"
-
+#include "LowPower.h"
 #define V_REF_5V 5.0
 #define ADC_RESOLUTION 1024.0
 
-
-// preprocessor write here --> it enabels or disables features
+// Check firmware's documentation here: link 
+// preprocessor for enable/disable operations 
 #define ALL_SYSTEM
-//#define SENSORS_READING
-//#define SEND_TO_SERVER
-//#define EMPTYING_SEAWATER
 
+// preprocessor for enable/disable serial print each feature
 #define DEBUG_ALL
-//#define DEBUG_SALINITY
-//#define DEBUG_TURBIDITY
-//#define DEBUG_DS18B20
-//#define DEBUG_RTCDS3231
-//#define DATA_LOGGER
-//#define DEBUG_SIM808L
+
+DS3231  rtc(SDA, SCL);
+Time t;
+
+
+/* Hour Operation */
+const byte workTimeinterval = 10; // minutes
+const byte relaxTimeinterval = 59; // night operation every 1 hour
+
+// morning time
+const byte morningTimestart = 4 ; // 4.00 am
+const byte morningTimeend = 6 ; // 6.00 am
+
+// mid Day
+const byte middayTimestart = 11; // 11.00
+const byte middayTimeend = 13 ; // 13.00
+
+// Sunset
+const byte sunsetTimestart = 16; // 17.00
+const byte sunsetTimeend = 19; // 19.00
 
 void setup() {
   Serial.begin(9600);
@@ -35,7 +48,35 @@ void setup() {
 }
 
 void loop() {
+ t = rtc.getTime();
+  byte timeHournow = t.hour;
+  Serial.println(t.hour);
+  delay(500);
 
+  if (timeHournow >= morningTimestart && timeHournow < morningTimeend) {
+
+    operationDevice(workTimeinterval);
+    Serial.println("Morning");
+  }
+  else if (timeHournow >= middayTimestart && timeHournow < middayTimeend) {
+    operationDevice(workTimeinterval);
+    Serial.println("Mid day");
+  }
+  else if (timeHournow >= sunsetTimestart && timeHournow < sunsetTimeend) {
+    operationDevice(workTimeinterval);
+    Serial.println("Sunset");
+  }
+  else {
+    operationDevice(relaxTimeinterval);
+    Serial.println("Relaxing");
+  }
+  delay(1000); // sleep before delay
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  delay(500); // wakeup time
+}
+
+// operation
+void operation(){
 #if defined MECHANICAL || defined ALL_SYSTEM
   /* Emptying pure water  */
   moveServo(EMPTYING_PUREWATER_DEG);
@@ -90,10 +131,6 @@ void loop() {
 #endif
 
 
-
-
-
-
   /* Testing mechanical operation
       it is not part from main code, only use when to doing specific operation on mechanical / debugging
   */
@@ -113,4 +150,25 @@ void loop() {
   purewaterPump_ON();
 #endif
 
+}
+
+
+void operationDevice(byte timeInterval) {
+  if (t.min % timeInterval == 0) {
+    Serial.println("OPERATING");
+    //operation starts here
+    operation();
+    
+    byte endTimeoperation = t.min;
+    while (endTimeoperation == t.min ) {
+      t = rtc.getTime();
+      Serial.println(t.min);
+      delay(2000);
+      LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+      delay(2000);
+    }
+
+  } else {
+    Serial.println("SLEEPING");
+  }
 }

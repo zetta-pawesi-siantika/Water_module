@@ -1,5 +1,3 @@
-#include <DS3231.h>
-DS3231  rtc(SDA, SCL);
 
 void setupRTCDS3231(){
    rtc.begin();
