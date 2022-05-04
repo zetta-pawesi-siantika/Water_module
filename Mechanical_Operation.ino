@@ -33,7 +33,6 @@ void purewaterPump_OFF(){
   digitalWrite(PIN_PUREWATER, HIGH);
 }
 
-
 void activateSensor() {
   digitalWrite(VCC_SENSORS, HIGH);
   digitalWrite(VCC_TURBIDITY, HIGH);
