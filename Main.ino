@@ -31,7 +31,7 @@ const byte middayTimestart = 11; // 11.00
 const byte middayTimeend = 13 ; // 13.00
 
 // Sunset
-const byte sunsetTimestart = 16; // 17.00
+const byte sunsetTimestart = 17; // 17.00
 const byte sunsetTimeend = 19; // 19.00
 
 void setup() {
