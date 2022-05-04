@@ -8,7 +8,7 @@ float gPhvalue;
 /* TDS Sensor */
 float gTds;
 float gConductivity;
-float gSalinity;
+int gSalinity;
 
 /* Turbidity Sensor */
 float gTurbidity;

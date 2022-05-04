@@ -2,9 +2,6 @@
    this function is to log sensors's data and store it in micro SD Card
 */
 
-// WARNING: UNDER PROCCESS --> still doesn't work
-
-//Libraries
 #include <SPI.h>
 #include <SD.h>
 

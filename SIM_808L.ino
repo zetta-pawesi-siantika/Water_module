@@ -67,7 +67,7 @@ void sendDatatoserver()
   SIM808.println(F("AT+CIPSEND"));//begin send data to remote server
   delay(4000);
   ShowSerialData();
-  SIM808.print(F("GET https://api.thingspeak.com/update?api_key=JIJJ0YWO8O6QK5BQ"));//begin send data to remote server. || key is auth= SHOULD CHANGE IT ACCORDING TO YOUR CHANNEL
+  SIM808.print(F("GET https://api.thingspeak.com/update?api_key=FSFSIMDXAO8H8NWG"));//begin send data to remote server. || key is auth= SHOULD CHANGE IT ACCORDING TO YOUR CHANNEL
   delay(2000);
   Serial.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gTurbidity) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));
   SIM808.println(+ "&field1=" + String(gPhvalue) + "&field2=" + String(gTurbidity) + "&field3=" + String(gTemp) + "&field4=" + String(gTds) + "&field5=" + String(gSalinity));//begin send data to remote server

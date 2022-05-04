@@ -9,24 +9,28 @@
 
 // preprocessor write here --> it enabels or disables features
 #define SENSORS_READING
+//#define SEND_TO_SERVER
+//#define EMPTYING_SEAWATER
+
 #define DEBUG_PH
-#define DEBUG_SALINITY
-#define DEBUG_TURBIDITY
-#define DEBUG_DS18B20
-#define DEBUG_RTCDS3231
+//#define DEBUG_SALINITY
+//#define DEBUG_TURBIDITY
+//#define DEBUG_DS18B20
+//#define DEBUG_RTCDS3231
+//#define DATA_LOGGER
+//#define DEBUG_SIM808L
 
 void setup() {
-  delay(2000); // delay for preventing pin form auto in low level when Arduino booting up
   Serial.begin(9600);
-  
-
+  purewaterPump_OFF();
+  seawaterPump_OFF();
+  delay(2000); // delay for preventing pin form auto in low level when Arduino booting up. DON'T CHANGE THE HIERARCHY OF THIS SETUP!!!
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
   setupMechanical() ;
   setupDatalogger();
   setupRTCDS3231();
-  purewaterPump_OFF();
-  seawaterPump_OFF();
+
   setupCom();
 }
 

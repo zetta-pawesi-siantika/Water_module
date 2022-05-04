@@ -14,7 +14,7 @@ void readSensorSalinity() {
   rata_rata_teg = (teg[0] + teg[1] + teg[2] + teg[3] + teg[4] + teg[5] + teg[6] + teg[7] + teg[8] + teg[9]) / 10 ;
   delay(100);
   gTds = (211.2254 * rata_rata_teg) - 144.1466;
-  gConductivity = (0.3442 * rata_rata_teg) - 0.253;
+  gConductivity = (0.3442 * rata_rata_teg) - 0.253; 
 
   // If gSalinity value is Nan
   if (gConductivity <= 0) {
@@ -32,6 +32,6 @@ void readSensorSalinity() {
   Serial.println(F(" Mikrosiemens/cm"));
   Serial.print(F("Salinity: "));
   Serial.print(gSalinity);
-  Serial.println(F(" gram/liter"));
+  Serial.println(F(" ppt"));
 #endif
 }

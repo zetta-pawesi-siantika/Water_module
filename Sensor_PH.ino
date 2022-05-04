@@ -10,7 +10,7 @@
 
 
 void readSensorPH() {
-  #define OFFSET 1.4  //deviation compensate --> done by self callibration
+  #define OFFSET 0.7  //deviation compensate --> done by self callibration
   unsigned int _analogReadPH;
   float _voltageConvertionPH;
 
