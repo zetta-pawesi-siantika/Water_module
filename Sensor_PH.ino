@@ -16,7 +16,6 @@ void readSensorPH() {
 
   _analogReadPH = analogRead(PIN_PH);
   _voltageConvertionPH = _analogReadPH * V_REF_5V / ADC_RESOLUTION;
-  Serial.println(_voltageConvertionPH);
   gPhvalue = 3.5 * _voltageConvertionPH + OFFSET;
 
 #if defined DEBUG_ALL || defined DEBUG_PH

@@ -26,9 +26,9 @@ void readSensorturbidity()
   }
 
 #if defined DEBUG_ALL || defined DEBUG_TURBIDITY
-  Serial.print(F("Turbidity in NTU value: "));
+  Serial.print(F("Turbidity: "));
   Serial.print(gTurbidity);
-  Serial.println(F("NTU"));
+  Serial.println(F(" NTU"));
 #endif
 }
 

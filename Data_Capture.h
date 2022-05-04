@@ -3,7 +3,7 @@
 #define DATA_CAPTURE_H
 
 /* PH sensor */
-byte gPhvalue;
+float gPhvalue;
 
 /* TDS Sensor */
 float gTds;
@@ -14,7 +14,7 @@ float gSalinity;
 float gTurbidity;
 
 /* ds18b20 Sensor */
-byte gTemp;
+float gTemp;
 
 /* RTC DS3231 */
  String dateNow; 

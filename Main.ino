@@ -8,15 +8,17 @@
 
 
 // preprocessor write here --> it enabels or disables features
-#define MECHANICAL
 #define SENSORS_READING
-#define DEACTIVATED_SENSORS
-#define DATA_LOGGER
-#define SEND_TO_SERVER
+#define DEBUG_PH
+#define DEBUG_SALINITY
+#define DEBUG_TURBIDITY
+#define DEBUG_DS18B20
+#define DEBUG_RTCDS3231
 
 void setup() {
-  Serial.begin(9600);
   delay(2000); // delay for preventing pin form auto in low level when Arduino booting up
+  Serial.begin(9600);
+  
 
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
