@@ -1,5 +1,5 @@
 #include <SoftwareSerial.h>
-#include <String.h>
+
 
 SoftwareSerial SIM808(2, 3); // RX || TX
 

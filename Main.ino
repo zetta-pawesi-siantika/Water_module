@@ -12,15 +12,15 @@
 #define ALL_SYSTEM
 
 // preprocessor for enable/disable serial print each feature
-#define DEBUG_ALL
+//#define DEBUG_ALL
 
 DS3231  rtc(SDA, SCL);
 Time t;
 
 
 /* Hour Operation */
-const byte workTimeinterval = 10; // minutes
-const byte relaxTimeinterval = 59; // night operation every 1 hour
+const byte workTimeinterval = 12; // minutes
+const byte relaxTimeinterval = 60; // night operation every 1 hour
 
 // morning time
 const byte morningTimestart = 4 ; // 4.00 am
@@ -38,7 +38,7 @@ void setup() {
   Serial.begin(9600);
   purewaterPump_OFF(); // SHOULD BE HERE
   seawaterPump_OFF(); // SHOULD BE HERE
-  delay(2000); // delay for preventing pin form auto in low level when Arduino booting up. DON'T CHANGE THE HIERARCHY OF THIS SETUP!!!
+  delay(2000); // delay for preventing pin from auto in low level when Arduino booting up. DON'T CHANGE THE HIERARCHY OF THIS SETUP!!!
   pinMode(VCC_SENSORS, OUTPUT);
   pinMode(VCC_TURBIDITY, OUTPUT);
   setupMechanical() ;
@@ -51,7 +51,6 @@ void loop() {
  t = rtc.getTime();
   byte timeHournow = t.hour;
   Serial.println(t.hour);
-  delay(500);
 
   if (timeHournow >= morningTimestart && timeHournow < morningTimeend) {
 
@@ -72,7 +71,8 @@ void loop() {
   }
   delay(1000); // sleep before delay
   LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
-  delay(500); // wakeup time
+  delay(2000); // wakeup time
+
 }
 
 // operation
@@ -85,7 +85,7 @@ void operation(){
 
   /* Sucking seawater */
   seawaterPump_ON();
-  delay(DELAY_SEAWATER_FULLFILL);
+  delay(DELAY_SEAWATER_FULLFILLING);
   seawaterPump_OFF();
 
 #endif
@@ -125,7 +125,7 @@ void operation(){
 #if defined MECHANICAL || defined ALL_SYSTEM
   moveServo(SETTLE_SERVO_DEG);
   purewaterPump_ON();
-  delay(DELAY_PUREWATER_FILLING);
+  delay(DELAY_PUREWATER_FULLFILLING);
   purewaterPump_OFF();
   Serial.println("DONE");
 #endif
@@ -138,6 +138,7 @@ void operation(){
 #ifdef SETTLE_SERVO
   moveServo(SETTLE_SERVO_DEG);
 #endif
+
 #ifdef EMPTYING_SEAWATER
   moveServo(EMPTYING_SEAWATER_DEG);
 #endif
@@ -160,7 +161,7 @@ void operationDevice(byte timeInterval) {
     operation();
     
     byte endTimeoperation = t.min;
-    while (endTimeoperation == t.min ) {
+    while (endTimeoperation == t.min) {
       t = rtc.getTime();
       Serial.println(t.min);
       delay(2000);
