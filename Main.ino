@@ -1,17 +1,25 @@
-#include <Wire.h>
-#include <DS3231.h>
+/* *************************************************************************** */
+/* Water Module Firmware V.1.0                                                 */
+/* Created by: Pawesi Siantika || 2022 || copyrights: Zettabyte Pte. Ltd.      */
+/* main code is executed first.                                                */
+/* see documentation here:  https://bit.ly/WTR_firmdoc                         */
+/* *************************************************************************** */
 #include "IO_Mapping.h"
 #include "Data_Capture.h"
 #include "Mechanical_Setting.h"
 #include "LowPower.h"
+#include <Wire.h>
+#include <DS3231.h>
+#include <SPI.h>
+
 #define V_REF_5V 5.0
 #define ADC_RESOLUTION 1024.0
 
-// Check firmware's documentation here: link 
-// preprocessor for enable/disable operations 
+
+// preprocessor for enable/disable operations (see documentation here: https://bit.ly/WTR_firmdoc)
 #define ALL_SYSTEM
 
-// preprocessor for enable/disable serial print each feature
+// preprocessor for enable/disable serial print each feature (IDEM)
 //#define DEBUG_ALL
 
 DS3231  rtc(SDA, SCL);
@@ -19,20 +27,20 @@ Time t;
 
 
 /* Hour Operation */
-const byte workTimeinterval = 12; // minutes
-const byte relaxTimeinterval = 60; // night operation every 1 hour
+const byte WORK_TIME_INTERVAL = 12; // in minutes. working operation 10 times in work hour
+const byte RELAX_TIME_INTERVAL = 60; // relaxing operation every 1 hour
 
 // morning time
-const byte morningTimestart = 4 ; // 4.00 am
-const byte morningTimeend = 6 ; // 6.00 am
+const byte MORNING_TIME_START = 4 ; // 4.00 am
+const byte MORNING_TIME_END = 6 ; // 6.00 am
 
 // mid Day
-const byte middayTimestart = 11; // 11.00
-const byte middayTimeend = 13 ; // 13.00
+const byte MIDDAY_TIME_START = 11; // 11.00 am
+const byte MIDDAY_TIME_END = 13 ; // 01.00 pm
 
 // Sunset
-const byte sunsetTimestart = 17; // 17.00
-const byte sunsetTimeend = 19; // 19.00
+const byte SUNSET_TIME_START = 17; // 05.00 pm
+const byte SUNSET_TIME_END = 19; // 07.00 pm
 
 void setup() {
   Serial.begin(9600);
@@ -48,35 +56,36 @@ void setup() {
 }
 
 void loop() {
- t = rtc.getTime();
+  t = rtc.getTime();
   byte timeHournow = t.hour;
   Serial.println(t.hour);
 
-  if (timeHournow >= morningTimestart && timeHournow < morningTimeend) {
+  if (timeHournow >= MORNING_TIME_START && timeHournow < MORNING_TIME_END) {
 
-    operationDevice(workTimeinterval);
+    operationDevice(WORK_TIME_INTERVAL);
     Serial.println("Morning");
   }
-  else if (timeHournow >= middayTimestart && timeHournow < middayTimeend) {
-    operationDevice(workTimeinterval);
+  else if (timeHournow >= MIDDAY_TIME_START && timeHournow < MIDDAY_TIME_END) {
+    operationDevice(WORK_TIME_INTERVAL);
     Serial.println("Mid day");
   }
-  else if (timeHournow >= sunsetTimestart && timeHournow < sunsetTimeend) {
-    operationDevice(workTimeinterval);
+  else if (timeHournow >= SUNSET_TIME_START && timeHournow < SUNSET_TIME_END) {
+    operationDevice(WORK_TIME_INTERVAL);
     Serial.println("Sunset");
   }
   else {
-    operationDevice(relaxTimeinterval);
+    operationDevice(RELAX_TIME_INTERVAL);
     Serial.println("Relaxing");
   }
-  delay(1000); // sleep before delay
+  delay(2000); // sleep before delay
   LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   delay(2000); // wakeup time
+  operation();
 
 }
 
 // operation
-void operation(){
+void operation() {
 #if defined MECHANICAL || defined ALL_SYSTEM
   /* Emptying pure water  */
   moveServo(EMPTYING_PUREWATER_DEG);
@@ -151,6 +160,9 @@ void operation(){
   purewaterPump_ON();
 #endif
 
+
+
+  while (1);
 }
 
 
@@ -159,7 +171,7 @@ void operationDevice(byte timeInterval) {
     Serial.println("OPERATING");
     //operation starts here
     operation();
-    
+
     byte endTimeoperation = t.min;
     while (endTimeoperation == t.min) {
       t = rtc.getTime();

@@ -1,5 +1,7 @@
-/* Setup for delay for pumps and servo position */
-
+/* Mechanical operation's header file
+ *  this sketch contains delay of pumps operation and servo degree.
+ */
+ 
 #ifndef MECHANICAL_SETTING_H
 #define MECHANICAL_SETTING_H
 

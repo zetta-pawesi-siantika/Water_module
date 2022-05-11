@@ -1,17 +1,10 @@
-/*
-  # This sample code is used to test the pH meter V1.1.
-  # Editor : YouYou
-  # Date   : 2014.06.23
-  # Ver    : 1.1
-  # Product: analog pH meter
-  # SKU    : SEN0161
+/* DF Robot pH sensor
+ *  src: https://www.dfrobot.com/product-1782.html
 */
-
-
 
 void readSensorPH() {
   #define OFFSET 0.5  //deviation compensate --> done by self callibration
-  unsigned int _analogReadPH;
+  int _analogReadPH;
   float _voltageConvertionPH;
 
   _analogReadPH = analogRead(PIN_PH);

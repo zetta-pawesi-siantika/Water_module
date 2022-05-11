@@ -1,5 +1,5 @@
 /* Mechanical operation 
- *  this 
+ *  this tab contains Mechanical properties
  */
 
 

@@ -1,11 +1,14 @@
+/* SIM808L properties
+ *  Please notice APIKEY from Thinkspeak 
+ *  APN setting : m2mautotronic (default). for more: https://wa.me/+62811526010 (autotronic)
+*/
 #include <SoftwareSerial.h>
-
 
 SoftwareSerial SIM808(2, 3); // RX || TX
 
 void setupCom()
 {
-  SIM808.begin(9600);               // the GPRS baud rate
+  SIM808.begin(9600);              
 }
 
 void sendDatatoserver()

@@ -1,22 +1,21 @@
-/* TDS sensor properties. It measure Conductivity and TDS. Needing convertion when uses for measure salinity  */
-// src: https://www.depoinovasi.com/produk-510-sensor-konduktivitas--tds--kadar-garam.html
-
-
+/* TDS sensor properties. It measure Conductivity and TDS. Needing convertion when uses for measure salinity  
+ *  src: https://www.depoinovasi.com/produk-510-sensor-konduktivitas--tds--kadar-garam.html
+ */
 
 void readSensorSalinity() {
-  float teg[10];
-  float rata_rata_teg;
+  float _volt[10];
+  float _voltageAverage;
 
   for ( int i = 0; i < 10; i++) {
-    int val = analogRead(PIN_SALINITY);
-    teg[i] = val * (V_REF_5V / ADC_RESOLUTION);
+    int _val = analogRead(PIN_SALINITY);
+    _volt[i] = _val * (V_REF_5V / ADC_RESOLUTION);
   }
-  rata_rata_teg = (teg[0] + teg[1] + teg[2] + teg[3] + teg[4] + teg[5] + teg[6] + teg[7] + teg[8] + teg[9]) / 10 ;
+  _voltageAverage = (_volt[0] + _volt[1] + _volt[2] + _volt[3] + _volt[4] + _volt[5] + _volt[6] + _volt[7] + _volt[8] + _volt[9]) / 10 ;
   delay(100);
-  gTds = (211.2254 * rata_rata_teg) - 144.1466;
-  gConductivity = (0.3442 * rata_rata_teg) - 0.253; 
+  gTds = (211.2254 * _voltageAverage) - 144.1466;
+  gConductivity = (0.3442 * _voltageAverage) - 0.253; 
 
-  // If gSalinity value is Nan
+  // If gConductivity value is negative sets it to 0.  It prevents gSalinity's value become nan (not an number).
   if (gConductivity <= 0) {
     gConductivity = 0;
   }

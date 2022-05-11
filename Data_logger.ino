@@ -2,7 +2,7 @@
    this function is to log sensors's data and store it in micro SD Card
 */
 
-#include <SPI.h>
+
 #include <SD.h>
 
 File dataFile;

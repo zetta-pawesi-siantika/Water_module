@@ -1,5 +1,6 @@
-/* Sensor Turbidity properties, It measures turbidity in NTU unit */
-// src: https://how2electronics.com/diy-turbidity-meter-using-turbidity-sensor-arduino/
+/* Sensor Turbidity properties, It measures turbidity in NTU unit 
+ *  src: https://how2electronics.com/diy-turbidity-meter-using-turbidity-sensor-arduino/
+ */
 
 void readSensorturbidity()
 {
